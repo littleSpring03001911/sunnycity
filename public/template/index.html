@@ -1,0 +1,1984 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>万菱商城</title>
+		<link rel="stylesheet" href="../css/public.css" />
+		<link rel="stylesheet" href="../css/style.css" />
+		<link rel="stylesheet" href="../font/iconfont.css"/>
+		<script src="../js/jquery.js"></script>
+		<!--二级菜单-->
+		<script src="../js/jquery-1.11.0.min.js"></script> 
+		<!--轮播图-->
+		<script src="../js/jquery.banner.1.1.0.js"></script>
+		<!--cookie-->
+		<script src="../js/jquery.cookie.js"></script>
+		<script>
+			$(function(){
+				
+				$("#banner .cont1").banner({
+		        items:$("#banner .cont1").children(".imgbox").children("img"),
+		        left:$("#banner .cont1").children(".btns").children("#left"),
+		        right:$("#banner .cont1").children(".btns").children("#right"),
+		        list:$("#banner .cont1").children(".list").children("li"),
+		        moveTime:1000,
+		        autoPlay:true,
+		        delayTime:2000,
+    });
+		    $("#banner").children(".banner-lunbo").children(".nav").children(".category").children(".home").mouseover(function(){
+						$(this).children(".home-hide").stop().show().parent().siblings().children(".home-hide").stop().hide()
+				
+				
+			});
+			$("#banner").children(".banner-lunbo").children(".nav").children(".category").children(".home").mouseout(function(){
+						$(this).children(".home-hide").stop().hide()
+//						console.log(1)
+			});
+			
+
+				$("#KK").children("li").mouseover(function(){
+					$("#LL").children("div").css("display","none")
+					$("#LL").children("div").eq($(this).index()).css("display","block")
+					$("#KK").children("li").eq($(this).index()).css("background","#55A532").siblings().css("background","none")
+//					console.log($("#LL").children("div"))
+//					console.log($("#KK").children("li"))
+//					console.log($("#LL").children("div").eq($(this).index()))
+					
+				});
+				$("#bb").children("li").mouseover(function(){
+					$("#cc").children("div").css("display","none")
+					$("#cc").children("div").eq($(this).index()).css("display","block")
+					$("#bb").children("li").eq($(this).index()).css("background","#E7212B").siblings().css("background","none")
+				});
+//耦合关系不好,重新做逻辑判断
+	if($.cookie("dm")){
+			class Delete{
+				constructor(arg) {
+					this.init()
+					this.play()
+					
+				}
+				init(){
+					if(JSON.parse($.cookie("dm"))[0].user==""){
+						$("a").click(function(){
+							$(".register").attr("href","register.html")
+							location.href="login.html"
+							
+							console.log(1)
+						})
+					}else{
+						this.display()
+						this.jump()
+					}
+				}
+				display(){
+					$(".login").attr("href","login.html");
+//					$(".register").attr("href","register.html");
+					if(JSON.parse($.cookie("dm"))[0].user!==""){
+											$(".login").html(`${JSON.parse($.cookie("dm"))[0].user}`); 
+					}
+
+					$(".register").html("退出")
+					
+				}
+				play(){
+					if($(".register").html()=="退出"){
+						$(".register").click(function(){
+							var obj=JSON.parse($.cookie("dm"))[0];
+							obj.user = "";
+							$.cookie("dm",JSON.stringify([obj]));
+							location.reload();})
+					
+					
+					}
+				}
+				jump(){
+					$("ul").children("li").children("a").click(function(){
+						location.href="goods.html"
+					})
+				}
+			}
+			new Delete()
+			
+			}else{
+				$(".login").attr("href","login.html");
+				$(".register").attr("href","register.html");
+			}
+			
+//			console.log($.cookie("dm"))
+//			console.log(JSON.parse($.cookie("dm"))[0].user)
+			});
+		</script>
+		
+			
+		
+	
+	</head>
+	<body>
+		<header>
+			<div class="header-top">
+				<div class="header-top-wrap margin">
+					<div class="left">
+						欢迎来万菱购！&nbsp;&nbsp;&nbsp;
+						<a class="login">登录</a>
+						<span>|</span>
+						<a class="register">注册</a>
+					</div>
+					<ul class="right">
+						<li class="mywl">
+							<a href="#">
+								我的万菱<i class="sanjiao iconfont iconlower-triangle"></i>
+							</a>
+							<!--<dl class="mywl-t">
+								<dt>买家中心</dt>
+								<dd>已买</dd>
+								<dd>待收货</dd>
+								<dd>待付款</dd>
+							</dl>
+							<dl class="mywl-b">
+								<dt>卖家中心</dt>
+								<dd>待发货</dd>
+								<dd>待付款</dd>
+								<dd>上新</dd>
+							</dl>-->
+								
+						</li>
+						<li class="shopcar">
+							<a href="shopcar.html">
+								<i class="car iconfont iconqicheqianlian-"></i>购物车
+							</a>
+						</li>
+						<li class="favorite">
+							<a href="#">
+								<i class="like iconfont iconshoucangjia-copy"></i>收藏夹
+							</a>
+						</li>
+						<li class="wlserver">
+							<a href="#">
+								万菱服务<i class="server iconfont iconlower-triangle"></i>
+							</a>
+						</li>
+						<li class="help">
+							<a href="#">
+								<i class="help iconfont iconwenhao"></i>帮助中心
+							</a>
+						</li>
+						<li class="wlphone">
+							<a href="#">
+								<i class="phone iconfont iconshouji"></i>手机万菱
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="header-center margin">
+				<div class="header-center-logo">
+					<a href="#">
+						<img src="../img/wl_logo.jpg" alt="万菱购物"/>
+					</a>
+				</div>
+				<div class="header-center-search">
+					<div class="search-t"> 
+						 <!--选项卡切换-->
+						<h3 class="active">商品</h3>
+						<h3>店铺</h3>
+					</div>
+					<div class="search-b">
+						<input type="text" id="txt" value=""/>
+						<input type="button" id="btn" value="搜索" />
+					</div>
+					
+				</div>
+			</div>
+			<div class="header-bottom margin">
+				<ul class="header-bottom-list">
+					<li class="allgoods"><a href="#"><i class="nav iconfont icondaohanglan"></i>全部商品分类</a></li>
+					<li><a href="#" class="active">首页</a></li>
+					<li class="company"><a href="#">厂家直供</a><img src="../img/hot.gif"></li>
+					<li><a href="#">软硬天师</a></li>
+					<li><a href="#">万菱拼团</a></li>
+					<li><a href="#">本周特价</a></li>
+					<li><a href="#">Good Lad</a></li>
+					<li><a href="#">澳洲直邮</a></li>
+					<li><a href="#">求购登记</a></li>
+					<li><a href="#">招聘信息</a></li>
+					
+				</ul>
+			</div>
+		</header>
+		<!--轮播图-->
+		<div id="banner">
+			<div class="banner-lunbo margin">
+				<div class="cont1 box">
+			        <div class="imgbox">
+			            <img src="../img/l1.jpg"/>
+			            <img src="../img/l2.jpg"/>
+			            <img src="../img/l3.jpg"/>
+			            <img src="../img/l4.jpg"/>
+			            <img src="../img/l5.jpg"/>
+			        </div>
+			        <div class="btns">
+			            <input type="button" id="left" value="<">
+			            <input type="button" id="right" value=">">
+			        </div>
+			        <!--<div class="list">
+			            <span>1</span>
+			            <span>2</span>
+			            <span>3</span>
+			            <span>4</span>
+			        </div>-->
+			        <ul class="list">
+			        	<li></li>
+			        	<li></li>
+			        	<li></li>
+			        	<li></li>
+			        	<li></li>
+			        </ul>
+    			</div>
+    			<!--二级菜单-->
+    			<!--1.菜单栏大框-->
+    			<div class="nav">
+    				<!--分类列表-->
+    				<ul class="category">
+    					<!--一-->
+    					<li class="home">
+    						<i class="jiaju iconfont iconjiajushipin"></i>
+    						<a href="#">摆件</a>
+    						<a href="#">仿真花</a>
+    						<a href="#">家居饰品</a>
+    						<div class="home-hide">
+    							<dl class="hide-f">
+    								<dt><a href="#">摆件</a></dt>
+    								<dd>
+    									<a href="#">摆件</a>
+    									<a href="#">风水轮</a>
+    									<a href="#">沙漏</a>
+    									<a href="#">电话</a>
+    									<a href="#">靠椅</a>
+    									<a href="#">音乐盒</a>
+    									<a href="#">蜡烛</a>
+    									<a href="#">笔筒</a>
+    									<a href="#">放大镜</a>
+    									<a href="#">海外工艺品</a>
+    									<a href="#">宗教工艺品</a>
+    									<a href="#">黑胶相机</a>
+    								</dd>
+    							</dl>
+    							<dl class="hide-second">
+    								<dt><a href="#">装饰</a></dt>
+    								<dd>
+    									<a href="#">摆件</a>
+    									<a href="#">风水轮</a>
+    									<a href="#">沙漏</a>
+    									<a href="#">电话</a>
+    									<a href="#">靠椅</a>
+    									<a href="#">音乐盒</a>
+    									<a href="#">蜡烛</a>
+    									<a href="#">笔筒</a>
+    									<a href="#">放大镜</a>
+    									<a href="#">海外工艺品</a>
+    									<a href="#">宗教工艺品</a>
+    									<a href="#">黑胶相机</a>
+    								</dd>
+    							</dl>
+    							<dl class="hide-third">
+    								<dt><a href="#">仿真花</a></dt>
+    								<dd>
+    									<a href="#">摆件</a>
+    									<a href="#">风水轮</a>
+    									<a href="#">沙漏</a>
+    									<a href="#">电话</a>
+    									<a href="#">靠椅</a>
+    									<a href="#">音乐盒</a>
+    									<a href="#">蜡烛</a>
+    									<a href="#">笔筒</a>
+    									<a href="#">放大镜</a>
+    									<a href="#">海外工艺品</a>
+    									<a href="#">宗教工艺品</a>
+    									<a href="#">黑胶相机</a>
+    								</dd>
+    							</dl>
+    							<dl class="hide-fourth">
+    								<dt><a href="#">花瓶</a></dt>
+    								<dd>
+    									<a href="#">摆件</a>
+    									<a href="#">风水轮</a>
+    									<a href="#">沙漏</a>
+    									<a href="#">电话</a>
+    									<a href="#">靠椅</a>
+    									<a href="#">音乐盒</a>
+    									<a href="#">蜡烛</a>
+    									<a href="#">笔筒</a>
+    									<a href="#">放大镜</a>
+    									<a href="#">海外工艺品</a>
+    									<a href="#">宗教工艺品</a>
+    									<a href="#">黑胶相机</a>
+    								</dd>
+    							</dl>
+    							<dl class="hide-five">
+    								<dt><a href="#">装饰画</a></dt>
+    								<dd>
+    									<a href="#">摆件</a>
+    									<a href="#">风水轮</a>
+    									<a href="#">沙漏</a>
+    									<a href="#">电话</a>
+    									<a href="#">靠椅</a>
+    									<a href="#">音乐盒</a>
+    									<a href="#">蜡烛</a>
+    									<a href="#">笔筒</a>
+    									<a href="#">放大镜</a>
+    									<a href="#">海外工艺品</a>
+    									<a href="#">宗教工艺品</a>
+    									<a href="#">黑胶相机</a>
+    								</dd>
+    							</dl>
+    							
+    						</div>
+    					</li>
+    					<!--二-->
+    					<li class="home">
+    						<i class="shoula iconfont icondengpao"></i>
+    						<a href="#">收纳</a>
+    						<a href="#">小家电</a>
+    						<a href="#">家居日用</a>
+    						<div class="home-hide">
+    							<dl class="hide-f">
+    								<dt><a href="#">摆件</a></dt>
+    								<dd>
+    									<a href="#">摆件</a>
+    									<a href="#">风水轮</a>
+    									<a href="#">沙漏</a>
+    									<a href="#">电话</a>
+    									<a href="#">靠椅</a>
+    									<a href="#">音乐盒</a>
+    									<a href="#">蜡烛</a>
+    									<a href="#">笔筒</a>
+    									<a href="#">放大镜</a>
+    									<a href="#">海外工艺品</a>
+    									<a href="#">宗教工艺品</a>
+    									<a href="#">黑胶相机</a>
+    								</dd>
+    							</dl>
+    							<dl class="hide-second">
+    								<dt><a href="#">装饰</a></dt>
+    								<dd>
+    									<a href="#">摆件</a>
+    									<a href="#">风水轮</a>
+    									<a href="#">沙漏</a>
+    									<a href="#">电话</a>
+    									<a href="#">靠椅</a>
+    									<a href="#">音乐盒</a>
+    									<a href="#">蜡烛</a>
+    									<a href="#">笔筒</a>
+    									<a href="#">放大镜</a>
+    									<a href="#">海外工艺品</a>
+    									<a href="#">宗教工艺品</a>
+    									<a href="#">黑胶相机</a>
+    								</dd>
+    							</dl>
+    							<dl class="hide-third">
+    								<dt><a href="#">仿真花</a></dt>
+    								<dd>
+    									<a href="#">摆件</a>
+    									<a href="#">风水轮</a>
+    									<a href="#">沙漏</a>
+    									<a href="#">电话</a>
+    									<a href="#">靠椅</a>
+    									<a href="#">音乐盒</a>
+    									<a href="#">蜡烛</a>
+    									<a href="#">笔筒</a>
+    									<a href="#">放大镜</a>
+    									<a href="#">海外工艺品</a>
+    									<a href="#">宗教工艺品</a>
+    									<a href="#">黑胶相机</a>
+    								</dd>
+    							</dl>
+    							<dl class="hide-fourth">
+    								<dt><a href="#">花瓶</a></dt>
+    								<dd>
+    									<a href="#">摆件</a>
+    									<a href="#">风水轮</a>
+    									<a href="#">沙漏</a>
+    									<a href="#">电话</a>
+    									<a href="#">靠椅</a>
+    									<a href="#">音乐盒</a>
+    									<a href="#">蜡烛</a>
+    									<a href="#">笔筒</a>
+    									<a href="#">放大镜</a>
+    									<a href="#">海外工艺品</a>
+    									<a href="#">宗教工艺品</a>
+    									<a href="#">黑胶相机</a>
+    								</dd>
+    							</dl>
+    							<dl class="hide-five">
+    								<dt><a href="#">装饰画</a></dt>
+    								<dd>
+    									<a href="#">摆件</a>
+    									<a href="#">风水轮</a>
+    									<a href="#">沙漏</a>
+    									<a href="#">电话</a>
+    									<a href="#">靠椅</a>
+    									<a href="#">音乐盒</a>
+    									<a href="#">蜡烛</a>
+    									<a href="#">笔筒</a>
+    									<a href="#">放大镜</a>
+    									<a href="#">海外工艺品</a>
+    									<a href="#">宗教工艺品</a>
+    									<a href="#">黑胶相机</a>
+    								</dd>
+    							</dl>
+    							<dl class="hide-six">
+    								<dt><a href="#">贴饰</a></dt>
+    								<dd>
+    									<a href="#">摆件</a>
+    									<a href="#">风水轮</a>
+    									<a href="#">沙漏</a>
+    									<a href="#">电话</a>
+    									<a href="#">靠椅</a>
+    									<a href="#">音乐盒</a>
+    									<a href="#">蜡烛</a>
+    									<a href="#">笔筒</a>
+    									<a href="#">放大镜</a>
+    									<a href="#">海外工艺品</a>
+    									<a href="#">宗教工艺品</a>
+    									<a href="#">黑胶相机</a>
+    								</dd>
+    							</dl>
+    							<dl class="hide-seven">
+    								<dt><a href="#">钟</a></dt>
+    								<dd>
+    									<a href="#">摆件</a>
+    									<a href="#">风水轮</a>
+    									<a href="#">沙漏</a>
+    									<a href="#">电话</a>
+    									<a href="#">靠椅</a>
+    									<a href="#">音乐盒</a>
+    									<a href="#">蜡烛</a>
+    									<a href="#">笔筒</a>
+    									<a href="#">放大镜</a>
+    									<a href="#">海外工艺品</a>
+    									<a href="#">宗教工艺品</a>
+    									<a href="#">黑胶相机</a>
+    								</dd>
+    							</dl>
+    							
+    						</div>
+    					</li>
+    					<!--三-->
+    					<li class="home">
+    						<i class="daocha iconfont iconicon-test"></i>
+    						<a href="#">水杯</a>
+    						<a href="#">茶具</a>
+    						<a href="#">碗筷</a>
+    						<div class="home-hide">
+    							<dl class="hide-f">
+    								<dt><a href="#">摆件</a></dt>
+    								<dd>
+    									<a href="#">摆件</a>
+    									<a href="#">风水轮</a>
+    									<a href="#">沙漏</a>
+    									<a href="#">电话</a>
+    									<a href="#">靠椅</a>
+    									<a href="#">音乐盒</a>
+    									<a href="#">蜡烛</a>
+    									<a href="#">笔筒</a>
+    									<a href="#">放大镜</a>
+    									<a href="#">海外工艺品</a>
+    									<a href="#">宗教工艺品</a>
+    									<a href="#">黑胶相机</a>
+    								</dd>
+    							</dl>
+    							<dl class="hide-second">
+    								<dt><a href="#">装饰</a></dt>
+    								<dd>
+    									<a href="#">摆件</a>
+    									<a href="#">风水轮</a>
+    									<a href="#">沙漏</a>
+    									<a href="#">电话</a>
+    									<a href="#">靠椅</a>
+    									<a href="#">音乐盒</a>
+    									<a href="#">蜡烛</a>
+    									<a href="#">笔筒</a>
+    									<a href="#">放大镜</a>
+    									<a href="#">海外工艺品</a>
+    									<a href="#">宗教工艺品</a>
+    									<a href="#">黑胶相机</a>
+    								</dd>
+    							</dl>
+    							<dl class="hide-third">
+    								<dt><a href="#">仿真花</a></dt>
+    								<dd>
+    									<a href="#">摆件</a>
+    									<a href="#">风水轮</a>
+    									<a href="#">沙漏</a>
+    									<a href="#">电话</a>
+    									<a href="#">靠椅</a>
+    									<a href="#">音乐盒</a>
+    									<a href="#">蜡烛</a>
+    									<a href="#">笔筒</a>
+    									<a href="#">放大镜</a>
+    									<a href="#">海外工艺品</a>
+    									<a href="#">宗教工艺品</a>
+    									<a href="#">黑胶相机</a>
+    								</dd>
+    							</dl>
+    							<!--<dl class="hide-fourth">
+    								<dt><a href="#">花瓶</a></dt>
+    								<dd>
+    									<a href="#">摆件</a>
+    									<a href="#">风水轮</a>
+    									<a href="#">沙漏</a>
+    									<a href="#">电话</a>
+    									<a href="#">靠椅</a>
+    									<a href="#">音乐盒</a>
+    									<a href="#">蜡烛</a>
+    									<a href="#">笔筒</a>
+    									<a href="#">放大镜</a>
+    									<a href="#">海外工艺品</a>
+    									<a href="#">宗教工艺品</a>
+    									<a href="#">黑胶相机</a>
+    								</dd>
+    							</dl>
+    							<dl class="hide-five">
+    								<dt><a href="#">装饰画</a></dt>
+    								<dd>
+    									<a href="#">摆件</a>
+    									<a href="#">风水轮</a>
+    									<a href="#">沙漏</a>
+    									<a href="#">电话</a>
+    									<a href="#">靠椅</a>
+    									<a href="#">音乐盒</a>
+    									<a href="#">蜡烛</a>
+    									<a href="#">笔筒</a>
+    									<a href="#">放大镜</a>
+    									<a href="#">海外工艺品</a>
+    									<a href="#">宗教工艺品</a>
+    									<a href="#">黑胶相机</a>
+    								</dd>
+    							</dl>
+    							<dl class="hide-six">
+    								<dt><a href="#">贴饰</a></dt>
+    								<dd>
+    									<a href="#">摆件</a>
+    									<a href="#">风水轮</a>
+    									<a href="#">沙漏</a>
+    									<a href="#">电话</a>
+    									<a href="#">靠椅</a>
+    									<a href="#">音乐盒</a>
+    									<a href="#">蜡烛</a>
+    									<a href="#">笔筒</a>
+    									<a href="#">放大镜</a>
+    									<a href="#">海外工艺品</a>
+    									<a href="#">宗教工艺品</a>
+    									<a href="#">黑胶相机</a>
+    								</dd>
+    							</dl>-->
+    							<dl class="hide-seven">
+    								<dt><a href="#">钟</a></dt>
+    								<dd>
+    									<a href="#">摆件</a>
+    									<a href="#">风水轮</a>
+    									<a href="#">沙漏</a>
+    									<a href="#">电话</a>
+    									<a href="#">靠椅</a>
+    									<a href="#">音乐盒</a>
+    									<a href="#">蜡烛</a>
+    									<a href="#">笔筒</a>
+    									<a href="#">放大镜</a>
+    									<a href="#">海外工艺品</a>
+    									<a href="#">宗教工艺品</a>
+    									<a href="#">黑胶相机</a>
+    								</dd>
+    							</dl>
+    							
+    						</div>
+    					</li>
+    					<!--四-->
+    					<li class="home">
+    						<i class="chuang iconfont iconchuang"></i>
+    						<a href="#">床上用品</a>
+    						<a href="#">家纺</a>
+    						<a href="#">布艺</a>
+    						<div class="home-hide">
+    							<!--<dl class="hide-f">
+    								<dt><a href="#">摆件</a></dt>
+    								<dd>
+    									<a href="#">摆件</a>
+    									<a href="#">风水轮</a>
+    									<a href="#">沙漏</a>
+    									<a href="#">电话</a>
+    									<a href="#">靠椅</a>
+    									<a href="#">音乐盒</a>
+    									<a href="#">蜡烛</a>
+    									<a href="#">笔筒</a>
+    									<a href="#">放大镜</a>
+    									<a href="#">海外工艺品</a>
+    									<a href="#">宗教工艺品</a>
+    									<a href="#">黑胶相机</a>
+    								</dd>
+    							</dl>
+    							<dl class="hide-second">
+    								<dt><a href="#">装饰</a></dt>
+    								<dd>
+    									<a href="#">摆件</a>
+    									<a href="#">风水轮</a>
+    									<a href="#">沙漏</a>
+    									<a href="#">电话</a>
+    									<a href="#">靠椅</a>
+    									<a href="#">音乐盒</a>
+    									<a href="#">蜡烛</a>
+    									<a href="#">笔筒</a>
+    									<a href="#">放大镜</a>
+    									<a href="#">海外工艺品</a>
+    									<a href="#">宗教工艺品</a>
+    									<a href="#">黑胶相机</a>
+    								</dd>
+    							</dl>
+    							<dl class="hide-third">
+    								<dt><a href="#">仿真花</a></dt>
+    								<dd>
+    									<a href="#">摆件</a>
+    									<a href="#">风水轮</a>
+    									<a href="#">沙漏</a>
+    									<a href="#">电话</a>
+    									<a href="#">靠椅</a>
+    									<a href="#">音乐盒</a>
+    									<a href="#">蜡烛</a>
+    									<a href="#">笔筒</a>
+    									<a href="#">放大镜</a>
+    									<a href="#">海外工艺品</a>
+    									<a href="#">宗教工艺品</a>
+    									<a href="#">黑胶相机</a>
+    								</dd>
+    							</dl>-->
+    							<dl class="hide-fourth">
+    								<dt><a href="#">花瓶</a></dt>
+    								<dd>
+    									<a href="#">摆件</a>
+    									<a href="#">风水轮</a>
+    									<a href="#">沙漏</a>
+    									<a href="#">电话</a>
+    									<a href="#">靠椅</a>
+    									<a href="#">音乐盒</a>
+    									<a href="#">蜡烛</a>
+    									<a href="#">笔筒</a>
+    									<a href="#">放大镜</a>
+    									<a href="#">海外工艺品</a>
+    									<a href="#">宗教工艺品</a>
+    									<a href="#">黑胶相机</a>
+    								</dd>
+    							</dl>
+    							<dl class="hide-five">
+    								<dt><a href="#">装饰画</a></dt>
+    								<dd>
+    									<a href="#">摆件</a>
+    									<a href="#">风水轮</a>
+    									<a href="#">沙漏</a>
+    									<a href="#">电话</a>
+    									<a href="#">靠椅</a>
+    									<a href="#">音乐盒</a>
+    									<a href="#">蜡烛</a>
+    									<a href="#">笔筒</a>
+    									<a href="#">放大镜</a>
+    									<a href="#">海外工艺品</a>
+    									<a href="#">宗教工艺品</a>
+    									<a href="#">黑胶相机</a>
+    								</dd>
+    							</dl>
+    							<dl class="hide-six">
+    								<dt><a href="#">贴饰</a></dt>
+    								<dd>
+    									<a href="#">摆件</a>
+    									<a href="#">风水轮</a>
+    									<a href="#">沙漏</a>
+    									<a href="#">电话</a>
+    									<a href="#">靠椅</a>
+    									<a href="#">音乐盒</a>
+    									<a href="#">蜡烛</a>
+    									<a href="#">笔筒</a>
+    									<a href="#">放大镜</a>
+    									<a href="#">海外工艺品</a>
+    									<a href="#">宗教工艺品</a>
+    									<a href="#">黑胶相机</a>
+    								</dd>
+    							</dl>
+    							<dl class="hide-seven">
+    								<dt><a href="#">钟</a></dt>
+    								<dd>
+    									<a href="#">摆件</a>
+    									<a href="#">风水轮</a>
+    									<a href="#">沙漏</a>
+    									<a href="#">电话</a>
+    									<a href="#">靠椅</a>
+    									<a href="#">音乐盒</a>
+    									<a href="#">蜡烛</a>
+    									<a href="#">笔筒</a>
+    									<a href="#">放大镜</a>
+    									<a href="#">海外工艺品</a>
+    									<a href="#">宗教工艺品</a>
+    									<a href="#">黑胶相机</a>
+    								</dd>
+    							</dl>
+    							
+    						</div>
+    					</li>
+    					<li class="home">
+    						<i class="wanju iconfont iconwanju"></i>
+    						<a href="#">玩具</a>
+    						<a href="#">沙发</a>
+    						<a href="#">地板</a>
+    						<div class="home-hide">
+    							<dl class="hide-f">
+    								<dt><a href="#">摆件</a></dt>
+    								<dd>
+    									<a href="#">摆件</a>
+    									<a href="#">风水轮</a>
+    									<a href="#">沙漏</a>
+    									<a href="#">电话</a>
+    									<a href="#">靠椅</a>
+    									<a href="#">音乐盒</a>
+    									<a href="#">蜡烛</a>
+    									<a href="#">笔筒</a>
+    									<a href="#">放大镜</a>
+    									<a href="#">海外工艺品</a>
+    									<a href="#">宗教工艺品</a>
+    									<a href="#">黑胶相机</a>
+    								</dd>
+    							</dl>
+    							<dl class="hide-second">
+    								<dt><a href="#">装饰</a></dt>
+    								<dd>
+    									<a href="#">摆件</a>
+    									<a href="#">风水轮</a>
+    									<a href="#">沙漏</a>
+    									<a href="#">电话</a>
+    									<a href="#">靠椅</a>
+    									<a href="#">音乐盒</a>
+    									<a href="#">蜡烛</a>
+    									<a href="#">笔筒</a>
+    									<a href="#">放大镜</a>
+    									<a href="#">海外工艺品</a>
+    									<a href="#">宗教工艺品</a>
+    									<a href="#">黑胶相机</a>
+    								</dd>
+    							</dl>
+    							<dl class="hide-third">
+    								<dt><a href="#">仿真花</a></dt>
+    								<dd>
+    									<a href="#">摆件</a>
+    									<a href="#">风水轮</a>
+    									<a href="#">沙漏</a>
+    									<a href="#">电话</a>
+    									<a href="#">靠椅</a>
+    									<a href="#">音乐盒</a>
+    									<a href="#">蜡烛</a>
+    									<a href="#">笔筒</a>
+    									<a href="#">放大镜</a>
+    									<a href="#">海外工艺品</a>
+    									<a href="#">宗教工艺品</a>
+    									<a href="#">黑胶相机</a>
+    								</dd>
+    							</dl>
+    							<dl class="hide-fourth">
+    								<dt><a href="#">花瓶</a></dt>
+    								<dd>
+    									<a href="#">摆件</a>
+    									<a href="#">风水轮</a>
+    									<a href="#">沙漏</a>
+    									<a href="#">电话</a>
+    									<a href="#">靠椅</a>
+    									<a href="#">音乐盒</a>
+    									<a href="#">蜡烛</a>
+    									<a href="#">笔筒</a>
+    									<a href="#">放大镜</a>
+    									<a href="#">海外工艺品</a>
+    									<a href="#">宗教工艺品</a>
+    									<a href="#">黑胶相机</a>
+    								</dd>
+    							</dl>
+    							<dl class="hide-five">
+    								<dt><a href="#">装饰画</a></dt>
+    								<dd>
+    									<a href="#">摆件</a>
+    									<a href="#">风水轮</a>
+    									<a href="#">沙漏</a>
+    									<a href="#">电话</a>
+    									<a href="#">靠椅</a>
+    									<a href="#">音乐盒</a>
+    									<a href="#">蜡烛</a>
+    									<a href="#">笔筒</a>
+    									<a href="#">放大镜</a>
+    									<a href="#">海外工艺品</a>
+    									<a href="#">宗教工艺品</a>
+    									<a href="#">黑胶相机</a>
+    								</dd>
+    							</dl>
+    							<dl class="hide-six">
+    								<dt><a href="#">贴饰</a></dt>
+    								<dd>
+    									<a href="#">摆件</a>
+    									<a href="#">风水轮</a>
+    									<a href="#">沙漏</a>
+    									<a href="#">电话</a>
+    									<a href="#">靠椅</a>
+    									<a href="#">音乐盒</a>
+    									<a href="#">蜡烛</a>
+    									<a href="#">笔筒</a>
+    									<a href="#">放大镜</a>
+    									<a href="#">海外工艺品</a>
+    									<a href="#">宗教工艺品</a>
+    									<a href="#">黑胶相机</a>
+    								</dd>
+    							</dl>
+    							<dl class="hide-seven">
+    								<dt><a href="#">钟</a></dt>
+    								<dd>
+    									<a href="#">摆件</a>
+    									<a href="#">风水轮</a>
+    									<a href="#">沙漏</a>
+    									<a href="#">电话</a>
+    									<a href="#">靠椅</a>
+    									<a href="#">音乐盒</a>
+    									<a href="#">蜡烛</a>
+    									<a href="#">笔筒</a>
+    									<a href="#">放大镜</a>
+    									<a href="#">海外工艺品</a>
+    									<a href="#">宗教工艺品</a>
+    									<a href="#">黑胶相机</a>
+    								</dd>
+    							</dl>
+    							
+    						</div>
+    					</li>
+    					<li class="home">
+    						<i class="lipin iconfont icongiftfill"></i>
+    						<a href="#">礼品</a>
+    						<a href="#">节庆</a>
+    						<a href="#">包装用品</a>
+    						<div class="home-hide">
+    							<dl class="hide-f">
+    								<dt><a href="#">摆件</a></dt>
+    								<dd>
+    									<a href="#">摆件</a>
+    									<a href="#">风水轮</a>
+    									<a href="#">沙漏</a>
+    									<a href="#">电话</a>
+    									<a href="#">靠椅</a>
+    									<a href="#">音乐盒</a>
+    									<a href="#">蜡烛</a>
+    									<a href="#">笔筒</a>
+    									<a href="#">放大镜</a>
+    									<a href="#">海外工艺品</a>
+    									<a href="#">宗教工艺品</a>
+    									<a href="#">黑胶相机</a>
+    								</dd>
+    							</dl>
+    							<dl class="hide-second">
+    								<dt><a href="#">装饰</a></dt>
+    								<dd>
+    									<a href="#">摆件</a>
+    									<a href="#">风水轮</a>
+    									<a href="#">沙漏</a>
+    									<a href="#">电话</a>
+    									<a href="#">靠椅</a>
+    									<a href="#">音乐盒</a>
+    									<a href="#">蜡烛</a>
+    									<a href="#">笔筒</a>
+    									<a href="#">放大镜</a>
+    									<a href="#">海外工艺品</a>
+    									<a href="#">宗教工艺品</a>
+    									<a href="#">黑胶相机</a>
+    								</dd>
+    							</dl>
+    							<dl class="hide-third">
+    								<dt><a href="#">仿真花</a></dt>
+    								<dd>
+    									<a href="#">摆件</a>
+    									<a href="#">风水轮</a>
+    									<a href="#">沙漏</a>
+    									<a href="#">电话</a>
+    									<a href="#">靠椅</a>
+    									<a href="#">音乐盒</a>
+    									<a href="#">蜡烛</a>
+    									<a href="#">笔筒</a>
+    									<a href="#">放大镜</a>
+    									<a href="#">海外工艺品</a>
+    									<a href="#">宗教工艺品</a>
+    									<a href="#">黑胶相机</a>
+    								</dd>
+    							</dl>
+    							<dl class="hide-fourth">
+    								<dt><a href="#">花瓶</a></dt>
+    								<dd>
+    									<a href="#">摆件</a>
+    									<a href="#">风水轮</a>
+    									<a href="#">沙漏</a>
+    									<a href="#">电话</a>
+    									<a href="#">靠椅</a>
+    									<a href="#">音乐盒</a>
+    									<a href="#">蜡烛</a>
+    									<a href="#">笔筒</a>
+    									<a href="#">放大镜</a>
+    									<a href="#">海外工艺品</a>
+    									<a href="#">宗教工艺品</a>
+    									<a href="#">黑胶相机</a>
+    								</dd>
+    							</dl>
+    							<dl class="hide-five">
+    								<dt><a href="#">装饰画</a></dt>
+    								<dd>
+    									<a href="#">摆件</a>
+    									<a href="#">风水轮</a>
+    									<a href="#">沙漏</a>
+    									<a href="#">电话</a>
+    									<a href="#">靠椅</a>
+    									<a href="#">音乐盒</a>
+    									<a href="#">蜡烛</a>
+    									<a href="#">笔筒</a>
+    									<a href="#">放大镜</a>
+    									<a href="#">海外工艺品</a>
+    									<a href="#">宗教工艺品</a>
+    									<a href="#">黑胶相机</a>
+    								</dd>
+    							</dl>
+    							<dl class="hide-six">
+    								<dt><a href="#">贴饰</a></dt>
+    								<dd>
+    									<a href="#">摆件</a>
+    									<a href="#">风水轮</a>
+    									<a href="#">沙漏</a>
+    									<a href="#">电话</a>
+    									<a href="#">靠椅</a>
+    									<a href="#">音乐盒</a>
+    									<a href="#">蜡烛</a>
+    									<a href="#">笔筒</a>
+    									<a href="#">放大镜</a>
+    									<a href="#">海外工艺品</a>
+    									<a href="#">宗教工艺品</a>
+    									<a href="#">黑胶相机</a>
+    								</dd>
+    							</dl>
+    							<dl class="hide-seven">
+    								<dt><a href="#">钟</a></dt>
+    								<dd>
+    									<a href="#">摆件</a>
+    									<a href="#">风水轮</a>
+    									<a href="#">沙漏</a>
+    									<a href="#">电话</a>
+    									<a href="#">靠椅</a>
+    									<a href="#">音乐盒</a>
+    									<a href="#">蜡烛</a>
+    									<a href="#">笔筒</a>
+    									<a href="#">放大镜</a>
+    									<a href="#">海外工艺品</a>
+    									<a href="#">宗教工艺品</a>
+    									<a href="#">黑胶相机</a>
+    								</dd>
+    							</dl>
+    							
+    						</div>
+    					</li>
+    					<li class="home">
+    						<i class="jiaju iconfont iconwanju"></i>
+    						<a href="#">玩具</a>
+    						<a href="#">文具</a>
+    						<a href="#">数码</a>
+    						<div class="home-hide">
+    							<dl class="hide-f">
+    								<dt><a href="#">摆件</a></dt>
+    								<dd>
+    									<a href="#">摆件</a>
+    									<a href="#">风水轮</a>
+    									<a href="#">沙漏</a>
+    									<a href="#">电话</a>
+    									<a href="#">靠椅</a>
+    									<a href="#">音乐盒</a>
+    									<a href="#">蜡烛</a>
+    									<a href="#">笔筒</a>
+    									<a href="#">放大镜</a>
+    									<a href="#">海外工艺品</a>
+    									<a href="#">宗教工艺品</a>
+    									<a href="#">黑胶相机</a>
+    								</dd>
+    							</dl>
+    							<dl class="hide-second">
+    								<dt><a href="#">装饰</a></dt>
+    								<dd>
+    									<a href="#">摆件</a>
+    									<a href="#">风水轮</a>
+    									<a href="#">沙漏</a>
+    									<a href="#">电话</a>
+    									<a href="#">靠椅</a>
+    									<a href="#">音乐盒</a>
+    									<a href="#">蜡烛</a>
+    									<a href="#">笔筒</a>
+    									<a href="#">放大镜</a>
+    									<a href="#">海外工艺品</a>
+    									<a href="#">宗教工艺品</a>
+    									<a href="#">黑胶相机</a>
+    								</dd>
+    							</dl>
+    							<dl class="hide-third">
+    								<dt><a href="#">仿真花</a></dt>
+    								<dd>
+    									<a href="#">摆件</a>
+    									<a href="#">风水轮</a>
+    									<a href="#">沙漏</a>
+    									<a href="#">电话</a>
+    									<a href="#">靠椅</a>
+    									<a href="#">音乐盒</a>
+    									<a href="#">蜡烛</a>
+    									<a href="#">笔筒</a>
+    									<a href="#">放大镜</a>
+    									<a href="#">海外工艺品</a>
+    									<a href="#">宗教工艺品</a>
+    									<a href="#">黑胶相机</a>
+    								</dd>
+    							</dl>
+    							<dl class="hide-fourth">
+    								<dt><a href="#">花瓶</a></dt>
+    								<dd>
+    									<a href="#">摆件</a>
+    									<a href="#">风水轮</a>
+    									<a href="#">沙漏</a>
+    									<a href="#">电话</a>
+    									<a href="#">靠椅</a>
+    									<a href="#">音乐盒</a>
+    									<a href="#">蜡烛</a>
+    									<a href="#">笔筒</a>
+    									<a href="#">放大镜</a>
+    									<a href="#">海外工艺品</a>
+    									<a href="#">宗教工艺品</a>
+    									<a href="#">黑胶相机</a>
+    								</dd>
+    							</dl>
+    							<dl class="hide-five">
+    								<dt><a href="#">装饰画</a></dt>
+    								<dd>
+    									<a href="#">摆件</a>
+    									<a href="#">风水轮</a>
+    									<a href="#">沙漏</a>
+    									<a href="#">电话</a>
+    									<a href="#">靠椅</a>
+    									<a href="#">音乐盒</a>
+    									<a href="#">蜡烛</a>
+    									<a href="#">笔筒</a>
+    									<a href="#">放大镜</a>
+    									<a href="#">海外工艺品</a>
+    									<a href="#">宗教工艺品</a>
+    									<a href="#">黑胶相机</a>
+    								</dd>
+    							</dl>
+    							<dl class="hide-six">
+    								<dt><a href="#">贴饰</a></dt>
+    								<dd>
+    									<a href="#">摆件</a>
+    									<a href="#">风水轮</a>
+    									<a href="#">沙漏</a>
+    									<a href="#">电话</a>
+    									<a href="#">靠椅</a>
+    									<a href="#">音乐盒</a>
+    									<a href="#">蜡烛</a>
+    									<a href="#">笔筒</a>
+    									<a href="#">放大镜</a>
+    									<a href="#">海外工艺品</a>
+    									<a href="#">宗教工艺品</a>
+    									<a href="#">黑胶相机</a>
+    								</dd>
+    							</dl>
+    							<dl class="hide-seven">
+    								<dt><a href="#">钟</a></dt>
+    								<dd>
+    									<a href="#">摆件</a>
+    									<a href="#">风水轮</a>
+    									<a href="#">沙漏</a>
+    									<a href="#">电话</a>
+    									<a href="#">靠椅</a>
+    									<a href="#">音乐盒</a>
+    									<a href="#">蜡烛</a>
+    									<a href="#">笔筒</a>
+    									<a href="#">放大镜</a>
+    									<a href="#">海外工艺品</a>
+    									<a href="#">宗教工艺品</a>
+    									<a href="#">黑胶相机</a>
+    								</dd>
+    							</dl>
+    							
+    						</div>
+    					</li>
+    					<li class="home">
+    						<i class="yifu iconfont icontubiaomoban11-copy"></i>
+    						<a href="#">男装</a>
+    						<a href="#">女装</a>
+    						<a href="#">童装</a>
+    						<div class="home-hide">
+    							<dl class="hide-f">
+    								<dt><a href="#">摆件</a></dt>
+    								<dd>
+    									<a href="#">摆件</a>
+    									<a href="#">风水轮</a>
+    									<a href="#">沙漏</a>
+    									<a href="#">电话</a>
+    									<a href="#">靠椅</a>
+    									<a href="#">音乐盒</a>
+    									<a href="#">蜡烛</a>
+    									<a href="#">笔筒</a>
+    									<a href="#">放大镜</a>
+    									<a href="#">海外工艺品</a>
+    									<a href="#">宗教工艺品</a>
+    									<a href="#">黑胶相机</a>
+    								</dd>
+    							</dl>
+    							<dl class="hide-second">
+    								<dt><a href="#">装饰</a></dt>
+    								<dd>
+    									<a href="#">摆件</a>
+    									<a href="#">风水轮</a>
+    									<a href="#">沙漏</a>
+    									<a href="#">电话</a>
+    									<a href="#">靠椅</a>
+    									<a href="#">音乐盒</a>
+    									<a href="#">蜡烛</a>
+    									<a href="#">笔筒</a>
+    									<a href="#">放大镜</a>
+    									<a href="#">海外工艺品</a>
+    									<a href="#">宗教工艺品</a>
+    									<a href="#">黑胶相机</a>
+    								</dd>
+    							</dl>
+    							<dl class="hide-third">
+    								<dt><a href="#">仿真花</a></dt>
+    								<dd>
+    									<a href="#">摆件</a>
+    									<a href="#">风水轮</a>
+    									<a href="#">沙漏</a>
+    									<a href="#">电话</a>
+    									<a href="#">靠椅</a>
+    									<a href="#">音乐盒</a>
+    									<a href="#">蜡烛</a>
+    									<a href="#">笔筒</a>
+    									<a href="#">放大镜</a>
+    									<a href="#">海外工艺品</a>
+    									<a href="#">宗教工艺品</a>
+    									<a href="#">黑胶相机</a>
+    								</dd>
+    							</dl>
+    							<dl class="hide-fourth">
+    								<dt><a href="#">花瓶</a></dt>
+    								<dd>
+    									<a href="#">摆件</a>
+    									<a href="#">风水轮</a>
+    									<a href="#">沙漏</a>
+    									<a href="#">电话</a>
+    									<a href="#">靠椅</a>
+    									<a href="#">音乐盒</a>
+    									<a href="#">蜡烛</a>
+    									<a href="#">笔筒</a>
+    									<a href="#">放大镜</a>
+    									<a href="#">海外工艺品</a>
+    									<a href="#">宗教工艺品</a>
+    									<a href="#">黑胶相机</a>
+    								</dd>
+    							</dl>
+    							<dl class="hide-five">
+    								<dt><a href="#">装饰画</a></dt>
+    								<dd>
+    									<a href="#">摆件</a>
+    									<a href="#">风水轮</a>
+    									<a href="#">沙漏</a>
+    									<a href="#">电话</a>
+    									<a href="#">靠椅</a>
+    									<a href="#">音乐盒</a>
+    									<a href="#">蜡烛</a>
+    									<a href="#">笔筒</a>
+    									<a href="#">放大镜</a>
+    									<a href="#">海外工艺品</a>
+    									<a href="#">宗教工艺品</a>
+    									<a href="#">黑胶相机</a>
+    								</dd>
+    							</dl>
+    							<dl class="hide-six">
+    								<dt><a href="#">贴饰</a></dt>
+    								<dd>
+    									<a href="#">摆件</a>
+    									<a href="#">风水轮</a>
+    									<a href="#">沙漏</a>
+    									<a href="#">电话</a>
+    									<a href="#">靠椅</a>
+    									<a href="#">音乐盒</a>
+    									<a href="#">蜡烛</a>
+    									<a href="#">笔筒</a>
+    									<a href="#">放大镜</a>
+    									<a href="#">海外工艺品</a>
+    									<a href="#">宗教工艺品</a>
+    									<a href="#">黑胶相机</a>
+    								</dd>
+    							</dl>
+    							<dl class="hide-seven">
+    								<dt><a href="#">钟</a></dt>
+    								<dd>
+    									<a href="#">摆件</a>
+    									<a href="#">风水轮</a>
+    									<a href="#">沙漏</a>
+    									<a href="#">电话</a>
+    									<a href="#">靠椅</a>
+    									<a href="#">音乐盒</a>
+    									<a href="#">蜡烛</a>
+    									<a href="#">笔筒</a>
+    									<a href="#">放大镜</a>
+    									<a href="#">海外工艺品</a>
+    									<a href="#">宗教工艺品</a>
+    									<a href="#">黑胶相机</a>
+    								</dd>
+    							</dl>
+    							
+    						</div>
+    					</li>
+    					<li class="home">
+    						<i class="xiexue iconfont iconxiexue"></i>
+    						<a href="#">箱包</a>
+    						<a href="#">鞋靴</a>
+    						<a href="#">手表</a>
+    						<div class="home-hide">
+    							<dl class="hide-f">
+    								<dt><a href="#">摆件</a></dt>
+    								<dd>
+    									<a href="#">摆件</a>
+    									<a href="#">风水轮</a>
+    									<a href="#">沙漏</a>
+    									<a href="#">电话</a>
+    									<a href="#">靠椅</a>
+    									<a href="#">音乐盒</a>
+    									<a href="#">蜡烛</a>
+    									<a href="#">笔筒</a>
+    									<a href="#">放大镜</a>
+    									<a href="#">海外工艺品</a>
+    									<a href="#">宗教工艺品</a>
+    									<a href="#">黑胶相机</a>
+    								</dd>
+    							</dl>
+    							<dl class="hide-second">
+    								<dt><a href="#">装饰</a></dt>
+    								<dd>
+    									<a href="#">摆件</a>
+    									<a href="#">风水轮</a>
+    									<a href="#">沙漏</a>
+    									<a href="#">电话</a>
+    									<a href="#">靠椅</a>
+    									<a href="#">音乐盒</a>
+    									<a href="#">蜡烛</a>
+    									<a href="#">笔筒</a>
+    									<a href="#">放大镜</a>
+    									<a href="#">海外工艺品</a>
+    									<a href="#">宗教工艺品</a>
+    									<a href="#">黑胶相机</a>
+    								</dd>
+    							</dl>
+    							<dl class="hide-third">
+    								<dt><a href="#">仿真花</a></dt>
+    								<dd>
+    									<a href="#">摆件</a>
+    									<a href="#">风水轮</a>
+    									<a href="#">沙漏</a>
+    									<a href="#">电话</a>
+    									<a href="#">靠椅</a>
+    									<a href="#">音乐盒</a>
+    									<a href="#">蜡烛</a>
+    									<a href="#">笔筒</a>
+    									<a href="#">放大镜</a>
+    									<a href="#">海外工艺品</a>
+    									<a href="#">宗教工艺品</a>
+    									<a href="#">黑胶相机</a>
+    								</dd>
+    							</dl>
+    							<dl class="hide-fourth">
+    								<dt><a href="#">花瓶</a></dt>
+    								<dd>
+    									<a href="#">摆件</a>
+    									<a href="#">风水轮</a>
+    									<a href="#">沙漏</a>
+    									<a href="#">电话</a>
+    									<a href="#">靠椅</a>
+    									<a href="#">音乐盒</a>
+    									<a href="#">蜡烛</a>
+    									<a href="#">笔筒</a>
+    									<a href="#">放大镜</a>
+    									<a href="#">海外工艺品</a>
+    									<a href="#">宗教工艺品</a>
+    									<a href="#">黑胶相机</a>
+    								</dd>
+    							</dl>
+    							<dl class="hide-five">
+    								<dt><a href="#">装饰画</a></dt>
+    								<dd>
+    									<a href="#">摆件</a>
+    									<a href="#">风水轮</a>
+    									<a href="#">沙漏</a>
+    									<a href="#">电话</a>
+    									<a href="#">靠椅</a>
+    									<a href="#">音乐盒</a>
+    									<a href="#">蜡烛</a>
+    									<a href="#">笔筒</a>
+    									<a href="#">放大镜</a>
+    									<a href="#">海外工艺品</a>
+    									<a href="#">宗教工艺品</a>
+    									<a href="#">黑胶相机</a>
+    								</dd>
+    							</dl>
+    							<dl class="hide-six">
+    								<dt><a href="#">贴饰</a></dt>
+    								<dd>
+    									<a href="#">摆件</a>
+    									<a href="#">风水轮</a>
+    									<a href="#">沙漏</a>
+    									<a href="#">电话</a>
+    									<a href="#">靠椅</a>
+    									<a href="#">音乐盒</a>
+    									<a href="#">蜡烛</a>
+    									<a href="#">笔筒</a>
+    									<a href="#">放大镜</a>
+    									<a href="#">海外工艺品</a>
+    									<a href="#">宗教工艺品</a>
+    									<a href="#">黑胶相机</a>
+    								</dd>
+    							</dl>
+    							<dl class="hide-seven">
+    								<dt><a href="#">钟</a></dt>
+    								<dd>
+    									<a href="#">摆件</a>
+    									<a href="#">风水轮</a>
+    									<a href="#">沙漏</a>
+    									<a href="#">电话</a>
+    									<a href="#">靠椅</a>
+    									<a href="#">音乐盒</a>
+    									<a href="#">蜡烛</a>
+    									<a href="#">笔筒</a>
+    									<a href="#">放大镜</a>
+    									<a href="#">海外工艺品</a>
+    									<a href="#">宗教工艺品</a>
+    									<a href="#">黑胶相机</a>
+    								</dd>
+    							</dl>
+    							
+    						</div>
+    					</li>
+    					<li class="home">
+    						<i class="muying iconfont iconmuying"></i>
+    						<a href="#">母婴</a>
+    						<a href="#">美食</a>
+    						<a href="#">美妆</a>
+    						<div class="home-hide">
+    							<dl class="hide-f">
+    								<dt><a href="#">摆件</a></dt>
+    								<dd>
+    									<a href="#">摆件</a>
+    									<a href="#">风水轮</a>
+    									<a href="#">沙漏</a>
+    									<a href="#">电话</a>
+    									<a href="#">靠椅</a>
+    									<a href="#">音乐盒</a>
+    									<a href="#">蜡烛</a>
+    									<a href="#">笔筒</a>
+    									<a href="#">放大镜</a>
+    									<a href="#">海外工艺品</a>
+    									<a href="#">宗教工艺品</a>
+    									<a href="#">黑胶相机</a>
+    								</dd>
+    							</dl>
+    							<dl class="hide-second">
+    								<dt><a href="#">装饰</a></dt>
+    								<dd>
+    									<a href="#">摆件</a>
+    									<a href="#">风水轮</a>
+    									<a href="#">沙漏</a>
+    									<a href="#">电话</a>
+    									<a href="#">靠椅</a>
+    									<a href="#">音乐盒</a>
+    									<a href="#">蜡烛</a>
+    									<a href="#">笔筒</a>
+    									<a href="#">放大镜</a>
+    									<a href="#">海外工艺品</a>
+    									<a href="#">宗教工艺品</a>
+    									<a href="#">黑胶相机</a>
+    								</dd>
+    							</dl>
+    							<dl class="hide-third">
+    								<dt><a href="#">仿真花</a></dt>
+    								<dd>
+    									<a href="#">摆件</a>
+    									<a href="#">风水轮</a>
+    									<a href="#">沙漏</a>
+    									<a href="#">电话</a>
+    									<a href="#">靠椅</a>
+    									<a href="#">音乐盒</a>
+    									<a href="#">蜡烛</a>
+    									<a href="#">笔筒</a>
+    									<a href="#">放大镜</a>
+    									<a href="#">海外工艺品</a>
+    									<a href="#">宗教工艺品</a>
+    									<a href="#">黑胶相机</a>
+    								</dd>
+    							</dl>
+    							<dl class="hide-fourth">
+    								<dt><a href="#">花瓶</a></dt>
+    								<dd>
+    									<a href="#">摆件</a>
+    									<a href="#">风水轮</a>
+    									<a href="#">沙漏</a>
+    									<a href="#">电话</a>
+    									<a href="#">靠椅</a>
+    									<a href="#">音乐盒</a>
+    									<a href="#">蜡烛</a>
+    									<a href="#">笔筒</a>
+    									<a href="#">放大镜</a>
+    									<a href="#">海外工艺品</a>
+    									<a href="#">宗教工艺品</a>
+    									<a href="#">黑胶相机</a>
+    								</dd>
+    							</dl>
+    							<dl class="hide-five">
+    								<dt><a href="#">装饰画</a></dt>
+    								<dd>
+    									<a href="#">摆件</a>
+    									<a href="#">风水轮</a>
+    									<a href="#">沙漏</a>
+    									<a href="#">电话</a>
+    									<a href="#">靠椅</a>
+    									<a href="#">音乐盒</a>
+    									<a href="#">蜡烛</a>
+    									<a href="#">笔筒</a>
+    									<a href="#">放大镜</a>
+    									<a href="#">海外工艺品</a>
+    									<a href="#">宗教工艺品</a>
+    									<a href="#">黑胶相机</a>
+    								</dd>
+    							</dl>
+    							<dl class="hide-six">
+    								<dt><a href="#">贴饰</a></dt>
+    								<dd>
+    									<a href="#">摆件</a>
+    									<a href="#">风水轮</a>
+    									<a href="#">沙漏</a>
+    									<a href="#">电话</a>
+    									<a href="#">靠椅</a>
+    									<a href="#">音乐盒</a>
+    									<a href="#">蜡烛</a>
+    									<a href="#">笔筒</a>
+    									<a href="#">放大镜</a>
+    									<a href="#">海外工艺品</a>
+    									<a href="#">宗教工艺品</a>
+    									<a href="#">黑胶相机</a>
+    								</dd>
+    							</dl>
+    							<dl class="hide-seven">
+    								<dt><a href="#">钟</a></dt>
+    								<dd>
+    									<a href="#">摆件</a>
+    									<a href="#">风水轮</a>
+    									<a href="#">沙漏</a>
+    									<a href="#">电话</a>
+    									<a href="#">靠椅</a>
+    									<a href="#">音乐盒</a>
+    									<a href="#">蜡烛</a>
+    									<a href="#">笔筒</a>
+    									<a href="#">放大镜</a>
+    									<a href="#">海外工艺品</a>
+    									<a href="#">宗教工艺品</a>
+    									<a href="#">黑胶相机</a>
+    								</dd>
+    							</dl>
+    							
+    						</div>
+    					</li>
+    				</ul>
+    			</div>
+    			<div class="banner-img">
+    				<a href="#"><img src="../img/k1.png" alt="新人力荐"/></a>
+    				<a href="#"><img src="../img/k2.jpg" alt="萌萌童装"></a>
+    			</div>
+			</div>
+		</div>
+		<div id="main" class="margin">
+			<!--厂家直购-->
+			<div class="cjzg">
+				<div class="cjzg-top">
+					<h2><a href="#">厂家直供</a></h2>
+					<p>源头好货，低价保证</p>
+					<h3><a href="#">更多></a></h3>
+				</div>
+				<ul class="cjzg-list">
+					<li class="first"><a href="#"><img src="../img/1.jpg"><span>进入店铺></span></a></li>
+					<li><a href="#"><img src="../img/12.jpg"><span>进入店铺></span></a></li>
+					<li><a href="#"><img src="../img/10.jpg"><span>进入店铺></span></a></li>
+					<li><a href="#"><img src="../img/11.jpg"><span>进入店铺></span></a></li>
+				</ul>
+				
+			</div>
+			<div class="wlpt">
+				<div class="wlpt-top">
+					<h2><a href="#">万菱拼团购</a></h2>
+					<!--倒计时部分-->
+					<h3><a href="#">更多></a></h3>
+				</div>	
+					<div class="wlpt-bottom">
+						<ul class="wlpt-list">
+							<li>
+								<a href="#">
+									<div class="wlpt-img"><img src="../img/z1.jpg"></div>
+									<div class="information">
+										<p class="name">计分飞镖</p>
+										<div class="price">
+											<em>￥</em>500<i>￥50</i>
+										</div>
+										<div class="buy">
+											<span class="num">2件</span>
+											<span class="pt">立即拼团</span>
+										</div>
+									</div>
+								</a>
+								
+							</li>
+							<li>
+								<a href="#">
+									<div class="wlpt-img"><img src="../img/z2.jpg"></div>
+									<div class="information">
+										<p class="name">计分飞镖</p>
+										<div class="price">
+											<em>￥</em>500<i>￥50</i>
+										</div>
+										<div class="buy">
+											<span class="num">2件</span>
+											<span class="pt">立即拼团</span>
+										</div>
+									</div>
+								</a>
+								
+							</li>
+							<li>
+								<a href="#">
+									<div class="wlpt-img"><img src="../img/z3.jpg"></div>
+									<div class="information">
+										<p class="name">计分飞镖</p>
+										<div class="price">
+											<em>￥</em>500<i>￥50</i>
+										</div>
+										<div class="buy">
+											<span class="num">2件</span>
+											<span class="pt">立即拼团</span>
+										</div>
+									</div>
+								</a>
+								
+							</li>
+							<li>
+								<a href="#">
+									<div class="wlpt-img"><img src="../img/z4.jpg"></div>
+									<div class="information">
+										<p class="name">计分飞镖</p>
+										<div class="price">
+											<em>￥</em>500<i>￥50</i>
+										</div>
+										<div class="buy">
+											<span class="num">2件</span>
+											<span class="pt">立即拼团</span>
+										</div>
+									</div>
+								</a>
+								
+							</li>
+							
+							
+						</ul>
+						<div class="wlpt-right">
+							<a href="#">
+								<img src="../img/k3.jpg"/>
+							</a>
+						</div>
+					</div>
+				
+			</div>
+			<!--万菱新品-->
+			<div class="wlxp">
+				<div class="wlxp-top">
+					<h2><a href="#">万菱新品</a></h2>
+					<p>每周上新，为你寻觅优质商品</p>
+					<h3><a href="#">更多></a></h3>
+				</div>
+				<ul class="wlxp-list">
+					<li><a href="#"><img src="../img/k4.jpg"/></a></li>
+					<li><a href="#"><img src="../img/k5.jpg"/></a></li>
+					<li><a href="#"><img src="../img/k6.jpg"/></a></li>
+					<li><a href="#"><img src="../img/k7.jpg"/></a></li>
+					<li class="last"><a href="#"><img src="../img/k8.jpg"/></a></li>
+				</ul>
+			</div>
+			<!--优质好店-->
+			<div class="yzhd">
+				<div class="yzhd-top">
+					<h2><a href="#">优质好店</a></h2>
+					<p>全城精选，一网打尽</p>
+					<h3><a href="#">更多></a></h3>
+				</div>
+				<ul class="yzhd-center">
+					<li><a href="#"><img src="../img/13.jpg"></a></li>
+					<li><a href="#"><img src="../img/14.jpg"></a></li>
+					<li><a href="#"><img src="../img/15.jpg"></a></li>
+					<li class="last"><a href="#"><img src="../img/16.jpg"></a></li>
+				</ul>
+				<ul class="yzhd-bottom">
+					<li><a href="#"><img src="../img/17.jpg"></a></li>
+					<li><a href="#"><img src="../img/18.jpg"></a></li>
+					<li class="last"><a href="#"><img src="../img/19.jpg"></a></li>
+				</ul>
+			</div>
+			<!--礼品精选-->
+			<div class="lpjx">
+				<div class="lpjx-top">
+					<h2><a href="#">礼品精选</a></h2>
+					<h3><a href="#">查看更多></a></h3>
+					<ul class="lpjx-tap"id="KK">
+						<li><a href="#">应季特惠</a></li>
+						<li><a href="#">趣味DIY</a></li>
+						<li><a href="#">3C数码</a></li>
+						<li><a href="#">电动玩偶</a></li>
+						<li><a href="#">生活小家电</a></li>
+					</ul>
+				</div>
+				<div class="lpjx-bottom clear">
+					<div class="lpjx-bottom-left">
+						<div class="jysl"><a href="#"><img src="../img/k9.jpg"/></a></div>
+						<div class="ys clear">
+							<a href="#">玻璃杯</a>
+							<a href="#">雨伞</a>
+							<a href="#">茶具</a>
+							<a href="#">礼包</a>
+							<a href="#">灯饰</a>
+							<a href="#">水杯</a>
+							<a href="#">保温杯</a>
+							<a href="#">收纳整理</a>
+						</div>
+							
+						
+					</div>
+					<div class="lpjx-bottom-center">
+						<a href="#"><img src="../img/k10.jpg"/></a>
+						<a href="#"><img src="../img/k11.jpg"/></a>
+					</div>
+					<div class="lpjx-bottom-right" id="LL">
+						<div class="yjth">
+							<a href="#"><img src="../img/b1.jpg"/></a>
+							<a href="#"><img src="../img/b2.jpg"/></a>
+							<a href="#"><img src="../img/b3.jpg"/></a>
+							<a href="#"><img src="../img/b4.jpg"/></a>
+							<a href="#"><img src="../img/small_52228200200.jpg"/></a>
+							<a href="#"><img src="../img/21.jpg"/></a>
+						</div>
+						<div class="diy">
+							<a href="#"><img src="../img/b2.jpg"/></a>
+							<a href="#"><img src="../img/12.jpg"/></a>
+							<a href="#"><img src="../img/k6.jpg"/></a>
+							<a href="#"><img src="../img/16.jpg"/></a>
+							<a href="#"><img src="../img/k7.jpg"/></a>
+							<a href="#"><img src="../img/small_52228200200.jpg"/></a>
+						</div>
+						<div class="sm">
+							<a href="#"><img src="../img/b2.jpg"/></a>
+							<a href="#"><img src="../img/12.jpg"/></a>
+							<a href="#"><img src="../img/k7.jpg"/></a>
+							<a href="#"><img src="../img/small_52228200200.jpg"/></a>
+						</div>
+						<div class="dd">
+							<a href="#"><img src="../img/b2.jpg"/></a>
+							<a href="#"><img src="../img/12.jpg"/></a>
+							<a href="#"><img src="../img/k6.jpg"/></a>
+							<a href="#"><img src="../img/16.jpg"/></a>
+							<a href="#"><img src="../img/k7.jpg"/></a>
+						</div>
+						<div class="xjd">
+							<a href="#"><img src="../img/b2.jpg"/></a>
+							<a href="#"><img src="../img/12.jpg"/></a>
+							<a href="#"><img src="../img/k7.jpg"/></a>
+							<a href="#"><img src="../img/small_52228200200.jpg"/></a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--企业采购-->
+			<div class="lpjx">
+				<div class="lpjx-top">
+					<h2><a href="#">企业采购</a></h2>
+					<h3><a href="#">查看更多></a></h3>
+					<ul class="lpjx-tap"id="KK">
+						<li><a href="#">学习文具</a></li>
+						<li><a href="#">数码配件</a></li>
+						<li><a href="#">热销童玩</a></li>
+						<li><a href="#">极致配饰</a></li>
+						<li><a href="#">创意赠品</a></li>
+					</ul>
+				</div>
+				<div class="lpjx-bottom clear">
+					<div class="lpjx-bottom-left">
+						<div class="jysl"><a href="#"><img src="../img/k9.jpg"/></a></div>
+						<div class="ys clear">
+							<a href="#">玻璃杯</a>
+							<a href="#">雨伞</a>
+							<a href="#">茶具</a>
+							<a href="#">礼包</a>
+							<a href="#">灯饰</a>
+							<a href="#">水杯</a>
+							<a href="#">保温杯</a>
+							<a href="#">收纳整理</a>
+						</div>
+							
+						
+					</div>
+					<div class="lpjx-bottom-center">
+						<a href="#"><img src="../img/k10.jpg"/></a>
+						<a href="#"><img src="../img/k11.jpg"/></a>
+					</div>
+					<div class="lpjx-bottom-right" id="LL">
+						<div class="yjth">
+							<a href="#"><img src="../img/b1.jpg"/></a>
+							<a href="#"><img src="../img/b2.jpg"/></a>
+							<a href="#"><img src="../img/b3.jpg"/></a>
+							<a href="#"><img src="../img/b4.jpg"/></a>
+							<a href="#"><img src="../img/small_52228200200.jpg"/></a>
+							<a href="#"><img src="../img/21.jpg"/></a>
+						</div>
+						<div class="diy">
+							<a href="#"><img src="../img/b2.jpg"/></a>
+							<a href="#"><img src="../img/12.jpg"/></a>
+							<a href="#"><img src="../img/k6.jpg"/></a>
+							<a href="#"><img src="../img/16.jpg"/></a>
+							<a href="#"><img src="../img/k7.jpg"/></a>
+							<a href="#"><img src="../img/small_52228200200.jpg"/></a>
+						</div>
+						<div class="sm">
+							<a href="#"><img src="../img/b2.jpg"/></a>
+							<a href="#"><img src="../img/12.jpg"/></a>
+							<a href="#"><img src="../img/k7.jpg"/></a>
+							<a href="#"><img src="../img/small_52228200200.jpg"/></a>
+						</div>
+						<div class="dd">
+							<a href="#"><img src="../img/b2.jpg"/></a>
+							<a href="#"><img src="../img/12.jpg"/></a>
+							<a href="#"><img src="../img/k6.jpg"/></a>
+							<a href="#"><img src="../img/16.jpg"/></a>
+							<a href="#"><img src="../img/k7.jpg"/></a>
+						</div>
+						<div class="xjd">
+							<a href="#"><img src="../img/b2.jpg"/></a>
+							<a href="#"><img src="../img/12.jpg"/></a>
+							<a href="#"><img src="../img/k7.jpg"/></a>
+							<a href="#"><img src="../img/small_52228200200.jpg"/></a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="jjsp">
+				<div class="jjsp-top">
+					<h2><a href="#">家居饰品</a></h2>
+					<h3><a href="#">查看更多></a></h3>
+				</div>
+				<div class="jjsp-bottom">
+					<div class="jjsp-bottom-left"><a href="#"><img src="../img/c1.jpg"/></a></div>
+					<div class="jjsp-bottom-center">
+						<a href="#"><img src="../img/c2.jpg"></a>
+						<a href="#"><img src="../img/c3.jpg"></a>
+						<a href="#"><img src="../img/c4.jpg"></a>
+						<a href="#"><img src="../img/c5.jpg"></a>
+						<a href="#"><img src="../img/c6.jpg"></a>
+						<a href="#"><img src="../img/c7.jpg"></a>
+					</div>
+					<div class="jjsp-bottom-right"><a href="#"><img src="../img/c8.jpg"></a></div>
+				</div>
+			</div>
+			<!--热销产品-->
+			<div class="rxcp">
+				<div class="rxcp-top">
+					<h2><a href="#">热销产品</a></h2>
+					<h3><a href="#">查看更多></a></h3>
+					<ul class="rxcp-qh" id="bb">
+						<li><a href="#">精品推荐</a></li>
+						<li><a href="#">创意家居</a></li>
+						<li><a href="#">礼品专栏</a></li>
+					</ul>
+				</div>
+				<div class="rxcp-bottom" id="cc">
+					<div class="div1">
+						<a href="#"><img src="../img/bb1.jpg"></a>
+						<a href="#"><img src="../img/bb2.jpg"></a>
+						<a href="#"><img src="../img/bb3.jpg"></a>
+					</div>
+					<div class="div2">
+						<a href="#"><img src="../img/bb4.jpg"></a>
+						<a href="#"><img src="../img/bb5.jpg"></a>
+						<a href="#"><img src="../img/bb6.jpg"></a>
+					</div>
+					<div class="div3">
+						<a href="#"><img src="../img/bb7.jpg"></a>
+						<a href="#"><img src="../img/bb8.jpg"></a>
+						<a href="#"><img src="../img/bb9.jpg"></a>
+					</div>
+				</div>
+			</div>
+			<!--尾单清仓-->
+			<div class="wdqc">
+				<div class="wdqc-top">
+					<h2><a href="#">SALE 尾单清仓</a></h2>
+					<h3><a href="#">查看更多></a></h3>
+					<ul class="wdqc-list">
+						<li><a href="#">儿童餐具</a></li>
+						<li><a href="#">钥匙扣</a></li>
+						<li><a href="#">加湿器</a></li>
+						<li><a href="#">小风扇</a></li>
+					</ul>
+				</div>
+				<div class="wdqc-bottom">
+					<a href="#">
+						<div class="list-img"><img src="#"/></div>
+						<div class="list-title">
+							<h2>$$</h2>
+							<p><em>￥</em>？？</p>							
+						</div>
+					</a>
+					<a href="#">
+						<div class="list-img"><img src="#"/></div>
+						<div class="list-title">
+							<h2>$$</h2>
+							<p><em>￥</em>？？</p>							
+						</div>
+					</a>
+					<a href="#">
+						<div class="list-img"><img src="#"/></div>
+						<div class="list-title">
+							<h2>$$</h2>
+							<p><em>￥</em>？？</p>							
+						</div>
+					</a>
+					<a href="#">
+						<div class="list-img"><img src="#"/></div>
+						<div class="list-title">
+							<h2>$$</h2>
+							<p><em>￥</em>？？</p>							
+						</div>
+					</a>
+					<a href="#">
+						<div class="list-img"><img src="#"/></div>
+						<div class="list-title">
+							<h2>$$</h2>
+							<p><em>￥</em>？？</p>							
+						</div>
+					</a>
+					<a href="#">
+						<div class="list-img"><img src="#"/></div>
+						<div class="list-title">
+							<h2>$$</h2>
+							<p><em>￥</em>？？</p>							
+						</div>
+					</a>
+					<a href="#">
+						<div class="list-img"><img src="#"/></div>
+						<div class="list-title">
+							<h2>$$</h2>
+							<p><em>￥</em>？？</p>							
+						</div>
+					</a>
+					<a href="#">
+						<div class="list-img"><img src="#"/></div>
+						<div class="list-title">
+							<h2>$$</h2>
+							<p><em>￥</em>？？</p>							
+						</div>
+					</a>
+					<a href="#">
+						<div class="list-img"><img src="#"/></div>
+						<div class="list-title">
+							<h2>$$</h2>
+							<p><em>￥</em>？？</p>							
+						</div>
+					</a>
+					<a href="#">
+						<div class="list-img"><img src="#"/></div>
+						<div class="list-title">
+							<h2>$$</h2>
+							<p><em>￥</em>？？</p>							
+						</div>
+					</a>
+					<a href="#">
+						<div class="list-img"><img src="#"/></div>
+						<div class="list-title">
+							<h2>$$</h2>
+							<p><em>￥</em>？？</p>							
+						</div>
+					</a>
+					<a href="#">
+						<div class="list-img"><img src="#"/></div>
+						<div class="list-title">
+							<h2>$$</h2>
+							<p><em>￥</em>？？</p>							
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="footer">
+			<div class="footer-top">
+				<ul class="footer-list margin">
+					<li>
+						<span class="cj iconfont iconwanju"></span>
+						<span>实体市场</span>
+					</li>
+					<li>
+						<span class="cj iconfont iconwanju"></span>
+						<span>厂家直供</span>
+					</li>
+					<li>
+						<span class="cj iconfont iconwanju"></span>
+						<span>正品授权</span>
+					</li>
+					<li>
+						<span class="cj iconfont iconwanju"></span>
+						<span>退货无忧</span>
+					</li>
+					<li>
+						<span class="cj iconfont iconwanju"></span>
+						<span>服务保证</span>
+					</li>
+				</ul>
+			</div>
+			<div class="footer-center">
+				<p class="text margin">
+					<a href="index.html"><img src="../img/wl_logo.jpg"/></a>
+					<img src="../img/erweima.jpg" />
+				</p>
+				
+			</div>
+			<div class="footer-bottom">
+				<p>欢迎光临万菱购物商城，我们将竭诚为您服务</p>
+			</div>
+		</div>
+		<div id="home">
+			<ul class="nan">
+				<li>厂家直供</li>
+				<li>万菱拼团</li>
+				<li>万菱新品</li>
+				<li>优质好店</li>
+				<li>礼品精选</li> 
+				<li>企业采购</li>
+				<li>家居饰品</li>
+				<li>热销产品</li>
+				<li>尾单清仓</li>
+			</ul>
+		</div>
+	</body>
+	<script src="../js/goodslist.js"></script>
+	<script>
+		$("#home").children().children("li").click(function(){
+			     $("html").stop().animate({
+                    scrollTop:$("#main").children("div").eq($(this).index()).offset().top
+                })
+		})
+	</script>
+	
+</html>

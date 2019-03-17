@@ -1,0 +1,12 @@
+.margin{width: 1200px;margin: 0 auto;}
+header .header-top{height: 30px;background: #f1f1f1;}
+header .header-top .header-top-wrap{height: 30px;line-height: 30px;}
+header .header-top .header-top-wrap .left{float: left;}
+header .header-top .header-top-wrap .left .login{color: #e7212b;}
+header .header-top .header-top-wrap .left .register:hover{color: #e7212b;}
+header .header-top .header-top-wrap .right{float: right;display: flex;justify-content: space-around;}
+header .header-top .header-top-wrap .right li{margin: 0 5px;}
+header .header-top .header-top-wrap .right li a:hover{color: #e7212b;}
+#main{}
+#main .main-top{height: 100px;}
+#main h2{margin: 15px 0;}

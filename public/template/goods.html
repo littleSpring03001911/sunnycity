@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>万菱商城商品列表</title>
+		<link rel="stylesheet" href="../css/public.css" />
+		<link rel="stylesheet" href="../font/iconfont.css" />
+		<link rel="stylesheet" href="../css/goods.css" />
+	
+		
+		
+	</head>
+	<body>
+		<header>
+			<div class="header-top">
+				<div class="header-top-wrap margin">
+					<div class="left">
+						欢迎来万菱购！&nbsp;&nbsp;&nbsp;
+						<a href="#" class="login">登录</a>
+						<span>|</span>
+						<a href="#" class="register">注册</a>
+					</div>
+					<ul class="right">
+						<li class="mywl">
+							<a href="#">
+								我的万菱<i class="sanjiao iconfont iconlower-triangle"></i>
+							</a>
+							<!--<dl class="mywl-t">
+								<dt>买家中心</dt>
+								<dd>已买</dd>
+								<dd>待收货</dd>
+								<dd>待付款</dd>
+							</dl>
+							<dl class="mywl-b">
+								<dt>卖家中心</dt>
+								<dd>待发货</dd>
+								<dd>待付款</dd>
+								<dd>上新</dd>
+							</dl>-->
+								
+						</li>
+						<li class="shopcar">
+							<a href="#">
+								<i class="car iconfont iconqicheqianlian-"></i>购物车
+							</a>
+						</li>
+						<li class="favorite">
+							<a href="#">
+								<i class="like iconfont iconshoucangjia-copy"></i>收藏夹
+							</a>
+						</li>
+						<li class="wlserver">
+							<a href="#">
+								万菱服务<i class="server iconfont iconlower-triangle"></i>
+							</a>
+						</li>
+						<li class="help">
+							<a href="#">
+								<i class="help iconfont iconwenhao"></i>帮助中心
+							</a>
+						</li>
+						<li class="wlphone">
+							<a href="#">
+								<i class="phone iconfont iconshouji"></i>手机万菱
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="header-center margin">
+				<div class="header-center-logo">
+					<a href="#">
+						<img src="../img/wl_logo.jpg" alt="万菱购物"/>
+					</a>
+				</div>
+				<div class="header-center-search">
+					<div class="search-t"> 
+						 <!--选项卡切换-->
+						<h3 class="active">商品</h3>
+						<h3>店铺</h3>
+					</div>
+					<div class="search-b">
+						<input type="text" id="txt" value=""/>
+						<input type="button" id="btn" value="搜索" />
+					</div>
+					
+				</div>
+			</div>
+			<div class="header-bottom margin">
+				<ul class="header-bottom-list">
+					<li class="allgoods"><a href="#"><i class="nav iconfont icondaohanglan"></i>全部商品分类</a></li>
+					<li><a href="#" class="active">首页</a></li>
+					<li class="company"><a href="#">厂家直供</a><img src="../img/hot.gif"></li>
+					<li><a href="#">软硬天师</a></li>
+					<li><a href="#">万菱拼团</a></li>
+					<li><a href="#">本周特价</a></li>
+					<li><a href="#">Good Lad</a></li>
+					<li><a href="#">澳洲直邮</a></li>
+					<li><a href="#">求购登记</a></li>
+					<li><a href="#">招聘信息</a></li>
+					
+				</ul>
+			</div>
+		</header>
+		<div id="main" class="margin">
+			<div class="wdqc">
+				<div class="wdqc-top">
+					<h2><a href="#">SALE 尾单清仓</a></h2>
+					<h3><a href="#">查看更多></a></h3>
+					<ul class="wdqc-list">
+						<li><a href="#">儿童餐具</a></li>
+						<li><a href="#">钥匙扣</a></li>
+						<li><a href="#">加湿器</a></li>
+						<li><a href="#">小风扇</a></li>
+					</ul>
+				</div>
+				<div class="wdqc-bottom">
+					<!--<a href="">
+						<div class="list-img"><img src="#"/></div>
+						<div class="list-title">
+							<h2>$$</h2>
+							<p><em>￥</em>？？</p>							
+						</div>
+					</a>-->
+				</div>	
+		</div>
+	</body>
+		<script src="../js/jquery.js"></script>
+		<script src="../js/jquery.cookie.js"></script>
+		<script src="../libs/cookie.js"></script>
+		<script src="../js/goodslist.js"></script>
+		
+		<script>
+			$(".wdqc-bottom").on("click","a",function(){
+				$(this).attr("num")
+			open("detail.html?"+$(this).attr("num"))
+				
+			})
+		</script>
+		
+</html>

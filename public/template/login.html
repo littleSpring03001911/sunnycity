@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>万菱购登录</title>
+		<link rel="stylesheet" href="../css/public.css" />
+		<link rel="stylesheet" href="../css/login.css" />
+	</head>
+	<body>
+		<header>
+			<div class="header-top margin">
+				<a href="index.html"><img src="../img/d1.jpg"/></a>
+				<div class="right">
+					<h3>欢迎登录</h3>
+					<a href="index.html">返回首页</a>
+				</div>
+			</div>
+		</header>
+		<div id="main">
+			<div class="r-input">
+	            <div class="input-top">
+	            	<p>账号密码登录</p>
+	            	<p>手机快捷登录</p>
+	            	
+	            	
+	            </div>		
+				<form>
+					用户名： <input type="text" name="user" id="txt" value="" /><br>
+					密码:&nbsp;&nbsp;<input type="text" name="pass" id="pass" /><br>
+					<input type="button" value="登录" id="sub"/>
+				</form>
+			</div>
+		</div>
+	</body>
+	<script src="../js/jquery.js"></script>
+	<script src="../js/jquery.cookie.js"></script>
+	<script src="../js/login.js"></script>
+	<!--<script>
+		class Login {
+			constructor() {
+				this.url="http://www.liyangyf.com/ctrl/login.php" ;
+				this.init()
+				
+			}
+			init(){
+				var that = this;
+				$("#sub").click(function(){
+					that.load()
+				})
+			}
+			load(){ 
+				var that = this;
+				$.ajax({
+					url:this.url,
+					data:{
+						user:$("#txt").val(),
+						pass:$("#pass").val()
+					},
+					success:function(res){
+						switch (res){
+							case "0":alert("用户名与密码不符");
+								break;
+							case "1":alert("密码为空，请重新输入");
+								break;
+								default:
+								alert("登陆成功，三秒后跳转到首页");
+								setTimeout(()=>{
+									location.href="index.html"
+								},3000);
+								that.setCookie()
+						}
+					}
+				});
+				
+			}
+		setCookie(){
+			$.cookie("user","dd",{expires:7});
+			
+		}
+		
+			
+		}
+		new Login()
+	</script>-->
+</html>
